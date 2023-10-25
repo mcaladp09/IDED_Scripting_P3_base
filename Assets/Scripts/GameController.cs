@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -6,11 +7,17 @@ public class GameController : MonoBehaviour
     private PlayerController playerController;
 
     [SerializeField]
+    private int arrows = 10;
+
+    [SerializeField]
     private GameObject markGO;
 
     private float[] ringDistances;
 
     public int Score { get; private set; }
+    public int Arrows { get => arrows; }
+
+    public int RemainingArrows { get => playerController.ArrowCount; }
 
     public void CalculateScore(Vector3 shotPosition)
     {
@@ -19,6 +26,11 @@ public class GameController : MonoBehaviour
     public void SetMark(Vector3 markPos)
     {
         markGO.transform.position = markPos;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 
     private void Awake()
@@ -49,4 +61,6 @@ public class GameController : MonoBehaviour
             ringDistances.SortAscendent();
         }
     }
+
+    
 }

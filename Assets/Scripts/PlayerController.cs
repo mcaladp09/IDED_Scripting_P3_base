@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private int arrows = 3;
-
     private int arrowCount = 0;
 
     private Ray ray;
@@ -15,17 +12,19 @@ public class PlayerController : MonoBehaviour
 
     public GameController gameController;
 
+    public int ArrowCount { get => arrowCount; private set => arrowCount = value; }
+
     private void Start()
     {
-        arrowCount = arrows;
+        ArrowCount = gameController.Arrows;
         mainCamera = Camera.main;
     }
 
     private void Update()
     {
-        if (arrowCount > 0 && Input.GetMouseButtonUp(0))
+        if (ArrowCount > 0 && Input.GetMouseButtonUp(0))
         {
-            arrowCount--;
+            ArrowCount--;
 
             mousePosition = Input.mousePosition;
             ray = mainCamera.ScreenPointToRay(mousePosition);
