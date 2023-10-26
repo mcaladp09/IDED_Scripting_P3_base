@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                gameController.SetMark(hit.point);
+                gameController.CalculateScore(hit.point);
                 print("Hit someting");
             }
         }

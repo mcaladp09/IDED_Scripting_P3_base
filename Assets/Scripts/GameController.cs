@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour
 
     private float[] ringDistances;
 
+    private Vector3 ringCenter;
+
     public int Score { get; private set; }
     public int Arrows { get => arrows; }
 
@@ -21,11 +23,22 @@ public class GameController : MonoBehaviour
 
     public void CalculateScore(Vector3 shotPosition)
     {
-    }
+        SetMark(shotPosition);
 
-    public void SetMark(Vector3 markPos)
-    {
-        markGO.transform.position = markPos;
+        float distanceToCenter = (shotPosition - ringCenter).magnitude;
+        print($"Distance to bullseye: {distanceToCenter:0.00}");
+
+        int scoreAdd = 10;
+
+        for (int i = 0; i < ringDistances.Length; i++)
+        {
+            if (distanceToCenter > ringDistances[i])
+            {
+                scoreAdd -= 1;
+            }
+        }
+
+        Score += scoreAdd;
     }
 
     public void Restart()
@@ -43,6 +56,11 @@ public class GameController : MonoBehaviour
         InitializeRing();
     }
 
+    private void SetMark(Vector3 shotPosition)
+    {
+        markGO.transform.position = shotPosition;
+    }
+
     private void InitializeRing()
     {
         GameObject[] ringRefs = GameObject.FindGameObjectsWithTag("RingReference");
@@ -51,7 +69,7 @@ public class GameController : MonoBehaviour
         {
             ringDistances = new float[ringRefs.Length];
 
-            Vector3 ringCenter = GameObject.FindGameObjectWithTag("Target").transform.position;
+            ringCenter = GameObject.FindGameObjectWithTag("Target").transform.position;
 
             for (int i = 0; i < ringDistances.Length; i++)
             {
@@ -61,6 +79,4 @@ public class GameController : MonoBehaviour
             ringDistances.SortAscendent();
         }
     }
-
-    
 }
