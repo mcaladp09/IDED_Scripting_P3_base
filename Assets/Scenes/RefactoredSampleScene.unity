@@ -837,9 +837,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 647109609}
-  - {fileID: 230653960}
   - {fileID: 1987816808}
   - {fileID: 1865171737}
+  - {fileID: 230653960}
   m_Father: {fileID: 1265315061}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1153,6 +1153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrows: 10
   markGO: {fileID: 896500799}
+  useWind: 1
 --- !u!1 &1012751037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,7 +1970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1865171737
 RectTransform:
   m_ObjectHideFlags: 0

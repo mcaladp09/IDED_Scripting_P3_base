@@ -11,6 +11,9 @@ public abstract class GameControllerBase : MonoBehaviour
     [SerializeField]
     private GameObject markGO;
 
+    [SerializeField]
+    private bool useWind = true;
+
     private float windSpeed = 0.0F;
 
     private float[] ringDistances;
@@ -29,11 +32,16 @@ public abstract class GameControllerBase : MonoBehaviour
 
     public void ProcessShot(Vector3 aimPosition)
     {
-        shotPosition = aimPosition + (windDirection * WindSpeed);
+        shotPosition = useWind ? CalculateShotPosition(aimPosition) : aimPosition;
         SetMark(shotPosition);
         CalculateScore(shotPosition);
 
         SetWindStats();
+    }
+
+    private Vector3 CalculateShotPosition(Vector3 aimPosition)
+    {
+        return aimPosition + (windDirection * WindSpeed);
     }
 
     public void Restart()
