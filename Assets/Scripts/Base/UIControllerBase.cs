@@ -17,8 +17,7 @@ public abstract class UIControllerBase : MonoBehaviour
         if (shotsCountLabel == null ||
             scoreCountLabel == null ||
             windLabel == null ||
-            windDirectionIndicator == null ||
-            GameController == null)
+            windDirectionIndicator == null)
         {
             print("Something is null");
             enabled = false;

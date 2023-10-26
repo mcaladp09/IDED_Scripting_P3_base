@@ -12,8 +12,6 @@ public abstract class PlayerControllerBase : MonoBehaviour
 
     public int ArrowCount { get => arrowCount; protected set => arrowCount = value; }
 
-    protected abstract GameController GameController { get; }
-
     protected virtual void Start()
     {
         mainCamera = Camera.main;
@@ -30,9 +28,11 @@ public abstract class PlayerControllerBase : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                GameController.ProcessShot(hit.point);
+                ProcessShot(hit.point);
                 print("Hit someting");
             }
         }
     }
+
+    protected abstract void ProcessShot(Vector3 point);
 }

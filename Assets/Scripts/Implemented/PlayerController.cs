@@ -1,6 +1,9 @@
+using UnityEngine;
+
 public class PlayerController : PlayerControllerBase
 {
-    public GameController gameController;
+    [SerializeField]
+    private GameController gameController;
 
     protected override void Start()
     {
@@ -8,5 +11,8 @@ public class PlayerController : PlayerControllerBase
         base.Start();
     }
 
-    protected override GameController GameController => gameController;
+    protected override void ProcessShot(Vector3 point)
+    {
+        gameController?.ProcessShot(point);
+    }
 }

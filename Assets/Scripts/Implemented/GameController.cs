@@ -6,14 +6,4 @@ public class GameController : GameControllerBase
     private PlayerController playerController;
 
     public override PlayerControllerBase PlayerController => playerController;
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-        if (playerController != null)
-        {
-            playerController.gameController = this;
-        }
-    }
 }
