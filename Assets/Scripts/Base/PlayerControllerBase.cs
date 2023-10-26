@@ -2,15 +2,13 @@ using UnityEngine;
 
 public abstract class PlayerControllerBase : MonoBehaviour
 {
-    private int arrowCount = 0;
-
     private Ray ray;
     private RaycastHit hit;
 
     private Vector3 mousePosition;
     private Camera mainCamera;
 
-    public int ArrowCount { get => arrowCount; protected set => arrowCount = value; }
+    public int ArrowCount { get; protected set; }
 
     protected virtual void Start()
     {

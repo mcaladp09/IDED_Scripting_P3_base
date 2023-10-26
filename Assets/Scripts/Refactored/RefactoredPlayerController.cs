@@ -1,18 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RefactoredPlayerController : MonoBehaviour
+public class RefactoredPlayerController : PlayerControllerBase
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void ProcessShot(Vector3 point)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        throw new System.NotImplementedException();
     }
 }

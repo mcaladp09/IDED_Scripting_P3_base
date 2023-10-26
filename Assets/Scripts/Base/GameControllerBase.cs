@@ -30,23 +30,14 @@ public abstract class GameControllerBase : MonoBehaviour
     public int RemainingArrows => PlayerController.ArrowCount;
     public float WindSpeed { get => windSpeed; private set => windSpeed = value; }
 
+    public void Restart() => SceneManager.LoadScene(0, LoadSceneMode.Single);
+
     public void ProcessShot(Vector3 aimPosition)
     {
         shotPosition = useWind ? CalculateShotPosition(aimPosition) : aimPosition;
         SetMark(shotPosition);
         CalculateScore(shotPosition);
-
         SetWindStats();
-    }
-
-    private Vector3 CalculateShotPosition(Vector3 aimPosition)
-    {
-        return aimPosition + (windDirection * WindSpeed);
-    }
-
-    public void Restart()
-    {
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 
     protected virtual void Awake()
@@ -54,6 +45,10 @@ public abstract class GameControllerBase : MonoBehaviour
         InitializeRing();
         SetWindStats();
     }
+
+    private Vector3 CalculateShotPosition(Vector3 aimPosition) => aimPosition + (windDirection * WindSpeed);
+
+    private void SetMark(Vector3 shotPosition) => markGO.transform.position = shotPosition;
 
     private void CalculateScore(Vector3 shotPosition)
     {
@@ -71,11 +66,6 @@ public abstract class GameControllerBase : MonoBehaviour
         }
 
         Score += scoreAdd;
-    }
-
-    private void SetMark(Vector3 shotPosition)
-    {
-        markGO.transform.position = shotPosition;
     }
 
     private void SetWindStats()
