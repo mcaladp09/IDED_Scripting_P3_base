@@ -32,7 +32,7 @@ public abstract class GameControllerBase : MonoBehaviour
 
     public void Restart() => SceneManager.LoadScene(0, LoadSceneMode.Single);
 
-    public void ProcessShot(Vector3 aimPosition)
+    public virtual void ProcessShot(Vector3 aimPosition)
     {
         shotPosition = useWind ? CalculateShotPosition(aimPosition) : aimPosition;
         SetMark(shotPosition);
