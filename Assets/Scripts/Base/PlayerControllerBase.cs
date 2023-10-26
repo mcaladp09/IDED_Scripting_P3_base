@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public abstract class PlayerControllerBase : MonoBehaviour
 {
     private int arrowCount = 0;
 
@@ -10,13 +10,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 mousePosition;
     private Camera mainCamera;
 
-    public GameController gameController;
+    public int ArrowCount { get => arrowCount; protected set => arrowCount = value; }
 
-    public int ArrowCount { get => arrowCount; private set => arrowCount = value; }
+    protected abstract GameController GameController { get; }
 
-    private void Start()
+    protected virtual void Start()
     {
-        ArrowCount = gameController.Arrows;
         mainCamera = Camera.main;
     }
 
@@ -31,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                gameController.CalculateScore(hit.point);
+                GameController.ProcessShot(hit.point);
                 print("Hit someting");
             }
         }

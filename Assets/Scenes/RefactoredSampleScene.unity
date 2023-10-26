@@ -1116,7 +1116,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 989672301}
-  - component: {fileID: 989672300}
+  - component: {fileID: 989672302}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1124,21 +1124,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &989672300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 989672299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04e4a4abcbdd51945924d304e3962fa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrows: 10
-  markGO: {fileID: 896500799}
-  playerController: {fileID: 1070497774}
 --- !u!4 &989672301
 Transform:
   m_ObjectHideFlags: 0
@@ -1154,6 +1139,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &989672302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989672299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5100f9b4066d84f89dca3a81ae2d24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrows: 10
+  markGO: {fileID: 896500799}
 --- !u!1 &1012751037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,7 +1241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1070497775}
-  - component: {fileID: 1070497774}
+  - component: {fileID: 1070497776}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1250,19 +1249,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1070497774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1070497773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 873ecd1b5a2e68741ac40feffb69dcfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameController: {fileID: 989672300}
 --- !u!4 &1070497775
 Transform:
   m_ObjectHideFlags: 0
@@ -1278,6 +1264,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1070497776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070497773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce872871e51fb8f4f939b1370e0caec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1124588678
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,7 +1379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1265315061}
   - component: {fileID: 1265315060}
-  - component: {fileID: 1265315062}
+  - component: {fileID: 1265315063}
   m_Layer: 0
   m_Name: UICamera
   m_TagString: Untagged
@@ -1456,7 +1454,7 @@ Transform:
   - {fileID: 881637246}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1265315062
+--- !u!114 &1265315063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1465,7 +1463,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1265315059}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb8aa9cabd5e1ca4487298ad80600774, type: 3}
+  m_Script: {fileID: 11500000, guid: 959cd3394d548144fb39da65b5bf8b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shotsCountLabel: {fileID: 1562026293}
@@ -1473,7 +1471,6 @@ MonoBehaviour:
   windLabel: {fileID: 311191774}
   gameOverGroup: {fileID: 1865171736}
   windDirectionIndicator: {fileID: 1396487426}
-  gameController: {fileID: 989672300}
 --- !u!1 &1312645002
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,7 +2109,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 989672300}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1

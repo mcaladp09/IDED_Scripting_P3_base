@@ -1,12 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameController : MonoBehaviour
+public abstract class GameControllerBase : MonoBehaviour
 {
     public const float MAX_WIND_SPEED = 1.25F;
-
-    [SerializeField]
-    private PlayerController playerController;
 
     [SerializeField]
     private int arrows = 10;
@@ -20,19 +17,38 @@ public class GameController : MonoBehaviour
 
     private Vector3 ringCenter;
     private Vector3 windDirection;
+    private Vector3 shotPosition;
 
-    public int Score { get; private set; }
+    public int Score { get; protected set; }
     public int Arrows { get => arrows; }
 
-    public int RemainingArrows { get => playerController.ArrowCount; }
+    public abstract PlayerControllerBase PlayerController { get; }
+
+    public int RemainingArrows => PlayerController.ArrowCount;
     public float WindSpeed { get => windSpeed; private set => windSpeed = value; }
 
-    public void CalculateScore(Vector3 aimPosition)
+    public void ProcessShot(Vector3 aimPosition)
     {
-        Vector3 shotPosition = aimPosition + (windDirection * WindSpeed);
-
+        shotPosition = aimPosition + (windDirection * WindSpeed);
         SetMark(shotPosition);
+        CalculateScore(shotPosition);
 
+        SetWindStats();
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
+    }
+
+    protected virtual void Awake()
+    {
+        InitializeRing();
+        SetWindStats();
+    }
+
+    private void CalculateScore(Vector3 shotPosition)
+    {
         float distanceToCenter = (shotPosition - ringCenter).magnitude;
         print(string.Format("Distance to bullseye: {0:0.00F}", distanceToCenter));
 
@@ -47,28 +63,17 @@ public class GameController : MonoBehaviour
         }
 
         Score += scoreAdd;
-        SetWindStats();
-    }
-
-    public void Restart()
-    {
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
-    }
-
-    private void Awake()
-    {
-        if (playerController != null)
-        {
-            playerController.gameController = this;
-        }
-
-        InitializeRing();
-        SetWindStats();
     }
 
     private void SetMark(Vector3 shotPosition)
     {
         markGO.transform.position = shotPosition;
+    }
+
+    private void SetWindStats()
+    {
+        windDirection = GameUtils.GetRandomUnitVector();
+        WindSpeed = GameUtils.GetRandomFloat();
     }
 
     private void InitializeRing()
@@ -87,11 +92,5 @@ public class GameController : MonoBehaviour
 
             ringDistances.SortAscendent();
         }
-    }
-
-    private void SetWindStats()
-    {
-        windDirection = GameUtils.GetRandomUnitVector();
-        WindSpeed = GameUtils.GetRandomFloat();
     }
 }
