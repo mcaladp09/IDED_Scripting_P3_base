@@ -52,7 +52,7 @@ public abstract class GameControllerBase : MonoBehaviour
 
     private void CalculateScore(Vector3 shotPosition)
     {
-        float distanceToCenter = (shotPosition - ringCenter).magnitude;
+        float distanceToCenter = shotPosition.DistanceTo(ringCenter);
         print(string.Format("Distance to bullseye: {0:0.00F}", distanceToCenter));
 
         int scoreAdd = 10;
@@ -85,7 +85,7 @@ public abstract class GameControllerBase : MonoBehaviour
 
             for (int i = 0; i < ringDistances.Length; i++)
             {
-                ringDistances[i] = (ringRefs[i].transform.position - ringCenter).magnitude;
+                ringDistances[i] = ringRefs[i].transform.position.DistanceTo(ringCenter);
             }
 
             ringDistances.SortAscendent();
