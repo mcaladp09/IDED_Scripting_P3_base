@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public const float MAX_WIND_SPEED = 100F;
+    public const float MAX_WIND_SPEED = 1.25F;
 
     [SerializeField]
     private PlayerController playerController;
@@ -25,13 +25,16 @@ public class GameController : MonoBehaviour
     public int Arrows { get => arrows; }
 
     public int RemainingArrows { get => playerController.ArrowCount; }
+    public float WindSpeed { get => windSpeed; private set => windSpeed = value; }
 
-    public void CalculateScore(Vector3 shotPosition)
+    public void CalculateScore(Vector3 aimPosition)
     {
+        Vector3 shotPosition = aimPosition + (windDirection * WindSpeed);
+
         SetMark(shotPosition);
 
         float distanceToCenter = (shotPosition - ringCenter).magnitude;
-        print($"Distance to bullseye: {distanceToCenter:0.00}");
+        print(string.Format("Distance to bullseye: {0:0.00F}", distanceToCenter));
 
         int scoreAdd = 10;
 
@@ -89,6 +92,6 @@ public class GameController : MonoBehaviour
     private void SetWindStats()
     {
         windDirection = GameUtils.GetRandomUnitVector();
-        windSpeed = GameUtils.GetRandomFloat();
+        WindSpeed = GameUtils.GetRandomFloat();
     }
 }

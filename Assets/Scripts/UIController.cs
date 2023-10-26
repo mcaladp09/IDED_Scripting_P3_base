@@ -7,15 +7,19 @@ public class UIController : MonoBehaviour
     private GameController gameController;
 
     [SerializeField]
-    private Text shotsCountLabel, scoreCountLabel;
+    private Text shotsCountLabel, scoreCountLabel, windLabel;
 
     [SerializeField]
-    private GameObject gameOverGroup;
+    private GameObject gameOverGroup, windDirectionIndicator;
 
     // Start is called before the first frame update
     private void Start()
     {
-        if (shotsCountLabel == null || scoreCountLabel == null || gameController == null)
+        if (shotsCountLabel == null ||
+            scoreCountLabel == null ||
+            windLabel == null ||
+            windDirectionIndicator == null ||
+            gameController == null)
         {
             print("Something is null");
             enabled = false;
@@ -37,6 +41,11 @@ public class UIController : MonoBehaviour
             if (scoreCountLabel != null)
             {
                 scoreCountLabel.text = gameController.Score.ToString();
+            }
+
+            if (windLabel != null)
+            {
+                windLabel.text = string.Format("{0:0.00F}", gameController.WindSpeed);
             }
 
             if (gameController.RemainingArrows < 1)
