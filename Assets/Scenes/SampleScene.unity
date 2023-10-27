@@ -1138,7 +1138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrows: 10
   markGO: {fileID: 896500799}
-  useWind: 1
+  useWind: 0
   playerController: {fileID: 1070497774}
 --- !u!4 &989672301
 Transform:
@@ -2180,7 +2180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1987816808
 RectTransform:
   m_ObjectHideFlags: 0
